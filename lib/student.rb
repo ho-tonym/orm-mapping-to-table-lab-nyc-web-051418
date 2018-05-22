@@ -26,20 +26,13 @@ attr_reader :id
     DB[:conn].execute(sql)
 
   end
-  # def save
-  #   sql = "INSERT INTO students (name, grade)
-  #   VALUES (?, ?)", name, grade
-  #
-  #   DB[:conn].execute(sql, self.name, self.grade)
-  #   @id = DB[:conn].execute("SELECT last_insert_rowid() FROM students")[0][0]
-  # end
 
   def save
     sql = <<-SQL
       INSERT INTO students (name, grade)
       VALUES (?, ?)
     SQL
-
+    #doesnt take an argumrnt so you have to do this compared to the pokemonlab version of save
     DB[:conn].execute(sql, self.name, self.grade)
     @id = DB[:conn].execute("SELECT last_insert_rowid() FROM students")[0][0]
   end
@@ -49,7 +42,4 @@ attr_reader :id
     student.save
     student
   end
-
-
-
 end
